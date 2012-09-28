@@ -1,0 +1,83 @@
+﻿<%@ master language="C#" autoeventwireup="true" inherits="SiteMaster, App_Web_qngfsssr" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title> Estudio Juridico </title>
+    <link href="~/App_Themes/SiteTheme/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1><img id="ImagenInicio" class="image" alt="" src="webJuzgado.gif" /> Estudio Juridico </h1>                
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server">Iniciar sesión</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Bienvenido!
+                        <asp:Label ID="lblBienvenido" runat="server" Text=""></asp:Label> 
+                        <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Cerrar sesión" LogoutPageUrl="~/Principal.aspx"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu"  EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Principal.aspx" Text="Página principal" />
+                        <asp:MenuItem NavigateUrl="~/Abogado/VerTurnos.aspx" Text="Turnos" />
+                        <asp:MenuItem Selectable="false" Text="Clientes">
+                            <asp:MenuItem NavigateUrl="~/Secretaria/NuevoCliente.aspx" Text="Nuevo Cliente" />
+                            <asp:MenuItem NavigateUrl="~/Secretaria/BuscarClientes.aspx" Text="Buscar Clientes" />
+                        </asp:MenuItem>
+                        <asp:MenuItem Selectable="false" Text="Abogados">
+                            <asp:MenuItem NavigateUrl="~/Abogado/NuevoAbogado.aspx" Text="Nuevo Abogado" />
+                            <asp:MenuItem NavigateUrl="~/Secretaria/BuscarAbogados.aspx" Text="Buscar Abogados" />
+                            <asp:MenuItem NavigateUrl="~/Abogado/Especializaciones.aspx" Text="Agregar Especializaciones" />
+                        </asp:MenuItem>
+                        <asp:MenuItem Selectable="false" Text="Consultas">
+                            <asp:MenuItem NavigateUrl="~/Abogado/NuevaConsulta.aspx" Text="Nueva Consulta" />
+                            <asp:MenuItem NavigateUrl="~/Secretaria/BuscarConsultas.aspx" Text="Buscar Consulas" />
+                        </asp:MenuItem>
+                        <asp:MenuItem Selectable="false" Text="Expedientes">
+                            <asp:MenuItem NavigateUrl="~/Abogado/NuevoExpediente.aspx" Text="Iniciar Expediente" />
+                            <asp:MenuItem NavigateUrl="~/Secretaria/BuscarExpedientes.aspx" Text="Buscar Expedientes" />
+                        </asp:MenuItem>
+                        <asp:MenuItem Selectable="false" Text="Informes">   
+                            <asp:MenuItem NavigateUrl="~/Informes/Informes.aspx" Text="Informes" />                         
+                            <asp:MenuItem NavigateUrl="~/Estadisticas/Estadisticas.aspx" Text="Informes Estadisticos" />
+                        </asp:MenuItem>
+                        <asp:MenuItem Selectable="false" Text="Configuraciones">
+                            <asp:MenuItem Selectable="false" Text="Tablas Auxiliares" >
+                                <asp:MenuItem NavigateUrl="~/Secretaria/AdministrarJuzgados.aspx" Text="Administrar Juzgados" />
+                                <asp:MenuItem NavigateUrl="~/Secretaria/AdministrarEstadosCiviles.aspx" Text="Administrar Estados Civiles" />
+                                <asp:MenuItem NavigateUrl="~/Secretaria/AdministrarTiposDocumento.aspx" Text="Administrar Tipos de Documentos" />
+                                <asp:MenuItem NavigateUrl="~/Secretaria/AdministrarLocalidades.aspx" Text="Administrar Provincias / Ciudades" />
+                            </asp:MenuItem>                            
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Admin/Administrador.aspx" Text="Administrador" />
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="Acerca de" />
+                    </Items>
+                </asp:Menu>
+            </div>            
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>    
+    </div>
+    <div class="footer">        
+            Desarrollado por Federico Nassif<br />
+            Todos los derechos reservados. ©2011<br />
+            Mail: <a href="mailto:federico.nassif@gmail.com">federico.nassif@gmail.com</a>
+    </div>
+    </form>
+</body>
+</html>

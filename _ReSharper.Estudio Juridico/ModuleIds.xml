@@ -1,0 +1,7 @@
+<Modules>
+  <Module PersistentId="7762EEE7-9981-4FE1-9DB0-898136F8DABB" ModuleId="EstudioJuridico" />
+  <Module PersistentId="C6514984-1F17-441F-9B03-37B5532A4F93" ModuleId="DataAccessLayer" />
+  <Module PersistentId="A5515C29-A388-4FFF-B287-B2616485F94A" ModuleId="SQLDataAccessLayer" />
+  <Module PersistentId="BF41814B-7514-4605-B066-A8A44BF5DD9A" ModuleId="Entities" />
+  <Module PersistentId="50172BC3-B475-4C26-A550-A296F3688854" ModuleId="BusinessLayer" />
+</Modules>

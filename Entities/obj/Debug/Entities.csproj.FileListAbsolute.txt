@@ -1,0 +1,15 @@
+C:\Users\Turco\Documents\Visual Studio 2010\Projects\Estudio Juridico\Entities\bin\Debug\Entities.dll
+C:\Users\Turco\Documents\Visual Studio 2010\Projects\Estudio Juridico\Entities\bin\Debug\Entities.pdb
+C:\Users\Turco\Documents\Visual Studio 2010\Projects\Estudio Juridico\Entities\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Turco\Documents\Visual Studio 2010\Projects\Estudio Juridico\Entities\obj\Debug\Entities.dll
+C:\Users\Turco\Documents\Visual Studio 2010\Projects\Estudio Juridico\Entities\obj\Debug\Entities.pdb
+C:\Users\Turco\Desktop\Estudio Juridico\Entities\bin\Debug\Entities.dll
+C:\Users\Turco\Desktop\Estudio Juridico\Entities\bin\Debug\Entities.pdb
+C:\Users\Turco\Desktop\Estudio Juridico\Entities\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Turco\Desktop\Estudio Juridico\Entities\obj\Debug\Entities.dll
+C:\Users\Turco\Desktop\Estudio Juridico\Entities\obj\Debug\Entities.pdb
+C:\Users\Desktop\Desktop\Estudio Juridico\Entities\bin\Debug\Entities.dll
+C:\Users\Desktop\Desktop\Estudio Juridico\Entities\bin\Debug\Entities.pdb
+C:\Users\Desktop\Desktop\Estudio Juridico\Entities\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Desktop\Desktop\Estudio Juridico\Entities\obj\Debug\Entities.dll
+C:\Users\Desktop\Desktop\Estudio Juridico\Entities\obj\Debug\Entities.pdb

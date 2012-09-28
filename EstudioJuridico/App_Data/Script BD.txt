@@ -1,0 +1,691 @@
+------------------------------------------------------------------------------------------
+------------------------------ SCRIPT DE LA BASE DE DATOS --------------------------------
+------------------------------------------------------------------------------------------
+
+CREATE DATABASE EstudioJuridico
+USE EstudioJuridico
+
+-- // CREAR MEMBERSHIP EN LA BD ANTES DE CREAR LAS TABLAS YA QUE SE UTILIZAN CLAVES FORANEAR
+-- // HACIA LA TABLA USUARIOS DE MEMBERSHIP
+
+CREATE TABLE TipoDocumento
+(
+Id int IDENTITY(1,1) NOT NULL,
+Descripcion varchar(10) NOT NULL,
+CONSTRAINT pk_TipoDocumento Primary Key(Id)
+)
+
+CREATE TABLE EstadoCivil
+(
+Id int IDENTITY(1,1) NOT NULL,
+Descripcion varchar(20) NOT NULL,
+CONSTRAINT pk_EstadoCivil Primary Key(Id)
+)
+
+CREATE TABLE Provincias
+(
+Id int IDENTITY(1,1) NOT NULL,
+Descripcion varchar(50) NOT NULL,
+CONSTRAINT pk_Provicnia Primary Key(Id) 
+)
+
+CREATE TABLE Ciudades
+(
+Id int IDENTITY(1,1) NOT NULL,
+Descripcion varchar(50) NOT NULL,
+Provincia int NOT NULL,
+CONSTRAINT pk_Ciudad Primary Key(Id),
+CONSTRAINT fk_Provincia Foreign Key(Provincia) REFERENCES Provincias(Id)
+)
+
+CREATE TABLE TemasConsulta
+(
+Id int IDENTITY(1,1) NOT NULL,
+Descripcion varchar(50) NOT NULL,
+CONSTRAINT pk_TemaConsulta Primary Key(Id)
+)
+
+CREATE TABLE Secretarias
+(
+Id int IDENTITY(1,1) NOT NULL,
+Nombre varchar(50) NOT NULL,
+Secretarios varchar(100) NOT NULL,
+Juzgado int NOT NULL,
+CONSTRAINT pk_Secretaria Primary Key(Id),
+CONSTRAINT fk_Juzgado FOREIGN KEY(Juzgado) REFERENCES Juzgados(Id)
+)
+
+CREATE TABLE Juzgados
+(
+Id int IDENTITY(1,1) NOT NULL,
+Nombre varchar(50) NOT NULL,
+Juez varchar(50) NOT NULL,
+Direccion varchar(50) NOT NULL,
+Telefono int NOT NULL,
+CONSTRAINT pk_Jugado Primary Key(Id)
+)
+
+CREATE TABLE Clientes
+(
+Id int IDENTITY(1,1) NOT NULL,
+Nombre varchar(50) NOT NULL,
+Apellido varchar(50) NOT NULL,
+TipoDocumento int NOT NULL,
+Documento int NOT NULL,
+FechaNacimiento date NOT NULL,
+EstadoCivil int NOT NULL,
+Ocupacion varchar(50) NOT NULL,
+Sexo varchar(10) NOT NULL,
+Nacionalidad varchar(50) NOT NULL,
+Provincia int NOT NULL,
+Ciudad int NOT NULL,
+Direccion varchar(50) NOT NULL,
+Telefono varchar(20),
+Celular varchar(20),
+Observaciones varchar(200),
+CONSTRAINT pk_Clientes Primary Key(Id),
+CONSTRAINT fk_TipoDocumentoCliente Foreign Key(TipoDocumento) REFERENCES TipoDocumento(Id),
+CONSTRAINT fk_EstadoCivilCliente Foreign Key(EstadoCivil) REFERENCES EstadoCivil(Id),
+CONSTRAINT fk_ProvinciaCliente Foreign Key(Provincia) REFERENCES Provincias(Id),
+CONSTRAINT fk_CiudadCliente Foreign Key(Ciudad) REFERENCES Ciudades(Id)
+)
+
+CREATE TABLE Abogados
+(
+Id int IDENTITY(1,1) NOT NULL,
+Nombre varchar(50) NOT NULL,
+Apellido varchar(50) NOT NULL,
+UserId uniqueidentifier NOT NULL,
+TipoDocumento int NOT NULL,
+Documento int NOT NULL,
+FechaNacimiento date NOT NULL,
+EstadoCivil int NOT NULL,
+Provincia int NOT NULL,
+Ciudad int NOT NULL,
+Direccion varchar(50) NOT NULL,
+Telefono varchar(20),
+Celular varchar(20),
+CONSTRAINT pk_Abogados Primary Key(Id),
+CONSTRAINT fk_UserId Foreign Key(UserId) REFERENCES aspnet_Users(UserId),
+CONSTRAINT fk_TipoDocumentoAbogado Foreign Key(TipoDocumento) REFERENCES TipoDocumento(Id),
+CONSTRAINT fk_EstadoCivilAbogado Foreign Key(EstadoCivil) REFERENCES EstadoCivil(Id),
+CONSTRAINT fk_ProvinciaAbogado Foreign Key(Provincia) REFERENCES Provincias(Id),
+CONSTRAINT fk_CiudadAbogado Foreign Key(Ciudad) REFERENCES Ciudades(Id)
+)
+
+CREATE TABLE Especializacion
+(
+Id int IDENTITY(1,1)NOT NULL,
+Abogado int NOT NULL,
+Descripcion varchar(100),
+Fecha Date NOT NULL,
+CONSTRAINT pk_Especializacion Primary Key(Id),
+CONSTRAINT fk_Abogado Foreign Key(Abogado) REFERENCES Abogados(Id)
+)
+
+CREATE TABLE Consultas
+(
+Id int IDENTITY(1,1) NOT NULL,
+Cliente int NOT NULL,
+Abogado int NOT NULL,
+TemaConsulta int NOT NULL,
+Estado int NOT NULL,
+Fecha datetime NOT NULL,
+Descripcion varchar(200) NOT NULL,
+CONSTRAINT pk_Consultas Primary Key(Id),
+CONSTRAINT fk_ClienteConsulta Foreign Key(Cliente) REFERENCES Clientes(Id),
+CONSTRAINT fk_AbogadoConsulta Foreign Key(Abogado) REFERENCES Abogados(Id),
+CONSTRAINT fk_TemaConsulta Foreign Key(TemaConsulta) REFERENCES TemasConsulta(Id),
+)
+
+CREATE TABLE Expedientes
+(
+Id int IDENTITY(1,1) NOT NULL,
+Caratula varchar(100) NOT NULL,
+Descripcion varchar(50),
+Actores varchar(100) NOT NULL,
+Consulta int NOT NULL,
+Juzgado int NOT NULL,
+Secretaria int NOT NULL,
+FechaInicio datetime NOT NULL,
+CONSTRAINT pk_Expedientes Primary Key(Id),
+CONSTRAINT fk_JuzgadoExpediente Foreign Key(Juzgado) REFERENCES Juzgados(Id),
+CONSTRAINT fk_SecretariaExpediente Foreign Key(Secretaria) REFERENCES Secretarias(Id),
+CONSTRAINT fk_Consulta Foreign Key(Consulta) REFERENCES Consultas(Id)
+)
+
+CREATE TABLE Escritos
+(
+Id int IDENTITY(1,1) NOT NULL,
+Expediente int NOT NULL,
+Descripcion varchar(200) NOT NULL,
+Fecha DateTime NOT NULL,
+CONSTRAINT pk_Escritos Primary Key(Id),
+CONSTRAINT fk_ExpedienteEscrito Foreign Key(Expediente) REFERENCES Expedientes(Id)
+)
+
+CREATE TABLE ExpedientesCerrados
+(
+Id int IDENTITY(1,1) NOT NULL,
+Expediente int NOT NULL,
+FechaCierre datetime NOT NULL,
+CONSTRAINT pk_ExpedienteCerrado Primary Key(Id),
+CONSTRAINT fk_Expediente Foreign Key(Expediente) REFERENCES Expedientes(Id)
+)
+
+CREATE TABLE Turnos
+(
+Id int IDENTITY(1,1) NOT NULL,
+Cliente int NOT NULL,
+Abogado int NOT NULL,
+Descripcion varchar(100) NOT NULL,
+Turno DateTime NOT NULL, 
+Ausente bit,
+Atendido bit,
+CONSTRAINT pk_Id Primary Key(Id),
+CONSTRAINT fk_ClienteTurno Foreign Key(Cliente) REFERENCES Clientes(Id),
+CONSTRAINT fk_AbogadoTurno Foreign Key(Abogado) REFERENCES Abogados(Id),
+)
+
+------------------------------------------------------------------------------------------
+------------------------ CREACION DE PROCEDIMIENTOS ALMACENADOS --------------------------
+------------------------------------------------------------------------------------------
+
+CREATE PROC sp_TraerClientes
+AS
+SELECT C.Id, C.Nombre, C.Apellido, C.TipoDocumento as TDId, TD.Descripcion as TipoDocumento,
+	   C.Documento, C.FechaNacimiento, C.EstadoCivil as ECId, EC.Descripcion as EstadoCivil,
+	   C.Ocupacion, C.Sexo, C.Nacionalidad, C.Provincia as PId, P.Descripcion as Provincia,
+	   C.Ciudad as CId, Ciu.Descripcion as Ciudad, C.Direccion, C.Telefono, C.Celular, C.Observaciones
+FROM Clientes C, TipoDocumento TD, EstadoCivil EC, Provincias P, Ciudades Ciu
+WHERE C.TipoDocumento = TD.Id and C.EstadoCivil = EC.Id and C.Provincia = P.Id and C.Ciudad = Ciu.Id
+GO
+
+
+CREATE PROC sp_TraerAbogados
+AS
+SELECT A.Id, A.Nombre, A.Apellido, A.TipoDocumento as TDId, TD.Descripcion as TipoDocumento,
+	   A.Documento, A.EstadoCivil as ECId, EC.Descripcion as EstadoCivil,
+	   A.Provincia as PId, P.Descripcion as Provincia,
+	   A.Ciudad as CId, Ciu.Descripcion as Ciudad, A.Direccion, A.Telefono, A.Celular
+FROM Abogados A, TipoDocumento TD, EstadoCivil EC, Provincias P, Ciudades Ciu
+WHERE A.TipoDocumento = TD.Id and A.EstadoCivil = EC.Id and A.Provincia = P.Id and A.Ciudad = Ciu.Id
+GO
+
+
+CREATE PROC sp_TraerExpedientesCerrados
+AS
+SELECT EC.Id, EC.Expediente, E.Caratula, E.FechaInicio, E.Juzgado, J.Nombre, E.Secretaria, S.Nombre, EC.FechaCierre
+FROM ExpedientesCerrados EC, Expedientes E, Juzgados J, Secretarias S
+WHERE EC.Expediente = E.Id and E.Juzgado = J.Id and E.Secretaria = S.Id
+GO
+
+
+CREATE PROC sp_ConsultasPorEstado
+@Fecha1 DateTime,
+@Fecha2 DateTime,
+@Estado int
+AS
+SELECT C.Id, C.Cliente, Cl.Apellido as ApellidoCliente, Cl.Nombre as NombreCliente, C.Abogado, 
+	   A.Apellido as ApellidoAbogado, A.Nombre as NombreCliente, Cl.Apellido, Cl.Apellido, 
+	   C.TemaConsulta, C.Fecha, C.Descripcion
+FROM Consultas C, Clientes Cl, Abogados A, TemasConsulta TC
+WHERE C.TemaConsulta = TC.Id and C.Cliente = Cl.Id and C.Abogado = A.Id and C.Estado = @Estado
+	  and C.Fecha between @Fecha1 and @Fecha2
+GO
+
+
+CREATE PROC sp_ConsultasSegunMotivo
+@Fecha1 DateTime,
+@Fecha2 DateTime
+AS
+SELECT TC.Id, TC.Descripcion, COUNT(C.Id)
+FROM Consultas C, TemasConsulta TC
+WHERE C.TemaConsulta = TC.Id and C.Fecha between @Fecha1 and @Fecha2
+GROUP BY TC.Id, TC.Descripcion
+GO
+
+
+CREATE PROC sp_ConsultasPorAbogado
+@Fecha1 DateTime,
+@Fecha2 DateTime
+AS
+SELECT A.Id, A.Apellido, A.Nombre, Count(C.Id)
+FROM Consultas C, Abogados A
+WHERE C.Abogado = A.Id and C.Fecha Between @Fecha1 and @Fecha2
+GROUP BY A.Id, A.Apellido, A.Nombre
+GO
+
+
+CREATE PROC sp_ExpedientesPorAbogado
+@Fecha1 DateTime,
+@Fecha2 DateTime
+AS
+SELECT A.Id, A.Apellido, A.Nombre, Count(E.Id)
+FROM Expedientes E, Consultas C, Abogados A
+WHERE E.Consulta = C.Id and C.Abogado = A.Id and C.Fecha Between @Fecha1 and @Fecha2
+GROUP BY A.Id, A.Apellido, A.Nombre
+GO
+
+
+CREATE PROC sp_ExpedientesCerradosPorJuzgado
+@Fecha1 DateTime,
+@Fecha2 DateTime
+AS
+SELECT J.Id, J.Nombre, COUNT(EC.Id)
+FROM ExpedientesCerrados EC, Expedientes E, Juzgados J
+WHERE Ec.Expediente=E.Id and E.Juzgado=J.Id and EC.FechaCierre Between @Fecha1 and @Fecha2
+GROUP BY J.Id, J.Nombre
+GO
+
+
+CREATE PROC sp_ClientesAusentesAtendidos
+@Fecha1 DateTime,
+@Fecha2 DateTime
+AS
+SELECT 'Clientes Ausentes', COUNT(T.Id)
+FROM Turnos T
+WHERE T.Ausente = 1 and T.Turno between @Fecha1 and @Fecha2
+UNION
+SELECT 'Clientes Atendidos', COUNT(T.Id)
+FROM Turnos T
+WHERE T.Atendido = 1 and T.Turno between @Fecha1 and @Fecha2
+GO
+
+-------------------------------------------------------------------------------------------
+----------------------------- LLENAR TABLA TIPO DE DOCUMENTOS -----------------------------
+-------------------------------------------------------------------------------------------
+
+INSERT INTO TipoDocumento
+VALUES ('DNI')
+
+INSERT INTO TipoDocumento
+VALUES ('LC')
+
+INSERT INTO TipoDocumento
+VALUES ('LE')
+
+--------------------------------------------------------------------------------------------
+------------------------------- LLENAR TABLA ESTADOS CIVILES -------------------------------
+--------------------------------------------------------------------------------------------
+
+INSERT INTO EstadoCivil
+VALUES ('Soltero')
+
+INSERT INTO EstadoCivil
+VALUES ('Casado')
+
+INSERT INTO EstadoCivil
+VALUES ('Divorciado')
+
+INSERT INTO EstadoCivil
+VALUES ('Viudo')
+
+--------------------------------------------------------------------------------------------
+------------------------------ LLENAR TABLA TEMAS DE CONSULTA ------------------------------
+--------------------------------------------------------------------------------------------
+
+INSERT INTO TemasConsulta
+VALUES ('Alimentos')
+
+INSERT INTO TemasConsulta
+VALUES ('Amparos')
+
+INSERT INTO TemasConsulta
+VALUES ('Contratos')
+
+INSERT INTO TemasConsulta
+VALUES ('Daños y Perjuicios')
+
+INSERT INTO TemasConsulta
+VALUES ('Desalojos')
+
+INSERT INTO TemasConsulta
+VALUES ('Divorcios')
+
+INSERT INTO TemasConsulta
+VALUES ('Ejecutivo')
+
+INSERT INTO TemasConsulta
+VALUES ('Guardas Judiciales')
+
+INSERT INTO TemasConsulta
+VALUES ('Interdicto')
+
+INSERT INTO TemasConsulta
+VALUES ('Regimen de Visitas')
+
+INSERT INTO TemasConsulta
+VALUES ('Violencia')
+
+------------------------------------------------------------------------------------------
+-------------------------------- LLENAR TABLAR PROVINCIAS --------------------------------
+------------------------------------------------------------------------------------------
+
+INSERT INTO Provincias
+VALUES ('Buenos Aires')
+
+INSERT INTO Provincias
+VALUES ('Catamarca')
+
+INSERT INTO Provincias
+VALUES ('Chaco')
+
+INSERT INTO Provincias
+VALUES ('Chubut')
+
+INSERT INTO Provincias
+VALUES ('Córdoba')
+
+INSERT INTO Provincias
+VALUES ('Corrientes')
+
+INSERT INTO Provincias
+VALUES ('Entre Ríos')
+
+INSERT INTO Provincias
+VALUES ('Formosa')
+
+INSERT INTO Provincias
+VALUES ('Jujuy')
+
+INSERT INTO Provincias
+VALUES ('La Pampa')
+
+INSERT INTO Provincias
+VALUES ('La Rioja')
+
+INSERT INTO Provincias
+VALUES ('Mendoza')
+
+INSERT INTO Provincias
+VALUES ('Misiones')
+
+INSERT INTO Provincias
+VALUES ('Neuquén')
+
+INSERT INTO Provincias
+VALUES ('Río Negro')
+
+INSERT INTO Provincias
+VALUES ('Salta')
+
+INSERT INTO Provincias
+VALUES ('San Juan')
+
+INSERT INTO Provincias
+VALUES ('San Luis')
+
+INSERT INTO Provincias
+VALUES ('Santa Cruz')
+
+INSERT INTO Provincias
+VALUES ('Santa Fe')
+
+INSERT INTO Provincias
+VALUES ('Santiago del Estero')
+
+INSERT INTO Provincias
+VALUES ('Tierra del Fuego')
+
+INSERT INTO Provincias
+VALUES ('Tucumán')
+
+-------------------------------------------------------------------------------------------
+---------------------------------- LLENAR TABLA CIUDADES ----------------------------------
+-------------------------------------------------------------------------------------------
+
+INSERT INTO Ciudades
+VALUES ('Capital Federal', 1)
+
+INSERT INTO Ciudades
+VALUES ('La Plata', 1)
+
+INSERT INTO Ciudades
+VALUES ('Catamarca', 2)
+
+INSERT INTO Ciudades
+VALUES ('Resistencia', 3)
+
+INSERT INTO Ciudades
+VALUES ('Charata', 3)
+
+INSERT INTO Ciudades
+VALUES ('Trelew', 4)
+
+INSERT INTO Ciudades
+VALUES ('Rawson', 4)
+
+INSERT INTO Ciudades
+VALUES ('Puerto Madryn', 4)
+
+INSERT INTO Ciudades
+VALUES ('Comodoro Rivadavia', 4)
+
+INSERT INTO Ciudades
+VALUES ('Alta Gracia', 5)
+
+INSERT INTO Ciudades
+VALUES ('Carlos Paz', 5)
+
+INSERT INTO Ciudades
+VALUES ('Cordoba', 5)
+
+INSERT INTO Ciudades
+VALUES ('Rio Cuarto', 5)
+
+INSERT INTO Ciudades
+VALUES ('Corrientes', 6)
+
+INSERT INTO Ciudades
+VALUES ('Ituzaingo', 6)
+
+INSERT INTO Ciudades
+VALUES ('Empedrado', 6)
+
+INSERT INTO Ciudades
+VALUES ('Colon', 7)
+
+INSERT INTO Ciudades
+VALUES ('Concordia', 7)
+
+INSERT INTO Ciudades
+VALUES ('Federacion', 7)
+
+INSERT INTO Ciudades
+VALUES ('Parana', 7)
+
+INSERT INTO Ciudades
+VALUES ('Formosa', 8)
+
+INSERT INTO Ciudades
+VALUES ('General Guemes', 8)
+
+INSERT INTO Ciudades
+VALUES ('El Talar', 9)
+
+INSERT INTO Ciudades
+VALUES ('Hipolito Yrigoyen', 9)
+
+INSERT INTO Ciudades
+VALUES ('Libertador General San Martin', 9)
+
+INSERT INTO Ciudades
+VALUES ('San Salvador de Jujuy', 9)
+
+INSERT INTO Ciudades
+VALUES ('Tilcara', 9)
+
+INSERT INTO Ciudades
+VALUES ('General Acha', 10)
+
+INSERT INTO Ciudades
+VALUES ('General Pcio', 10)
+
+INSERT INTO Ciudades
+VALUES ('Santa Rosa', 10)
+
+INSERT INTO Ciudades
+VALUES ('Aimogasta', 11)
+
+INSERT INTO Ciudades
+VALUES ('Chamical', 11)
+
+INSERT INTO Ciudades
+VALUES ('Chepes', 11)
+
+INSERT INTO Ciudades
+VALUES ('Chilecito', 11)
+
+INSERT INTO Ciudades
+VALUES ('Famatina', 11)
+
+INSERT INTO Ciudades
+VALUES ('La Rioja', 11)
+
+INSERT INTO Ciudades
+VALUES ('Villa Union', 11)
+
+INSERT INTO Ciudades
+VALUES ('Famatina', 11)
+
+INSERT INTO Ciudades
+VALUES ('Lujan de Cuyo', 12)
+
+INSERT INTO Ciudades
+VALUES ('Mendoza', 12)
+
+INSERT INTO Ciudades
+VALUES ('Villavicencio', 12)
+
+INSERT INTO Ciudades
+VALUES ('Monrecarlo', 13)
+
+INSERT INTO Ciudades
+VALUES ('Obera', 13)
+
+INSERT INTO Ciudades
+VALUES ('Posadas', 13)
+
+INSERT INTO Ciudades
+VALUES ('Puerto Iguazu', 13)
+
+INSERT INTO Ciudades
+VALUES ('San Pedro', 13)
+
+INSERT INTO Ciudades
+VALUES ('Neuquen', 14)
+
+INSERT INTO Ciudades
+VALUES ('San Martin de los Andes', 14)
+
+INSERT INTO Ciudades
+VALUES ('Villa La Angostura', 14)
+
+INSERT INTO Ciudades
+VALUES ('Zapala', 14)
+
+INSERT INTO Ciudades
+VALUES ('Cipolletti', 15)
+
+INSERT INTO Ciudades
+VALUES ('General Roca', 15)
+
+INSERT INTO Ciudades
+VALUES ('Rio Colorado', 15)
+
+INSERT INTO Ciudades
+VALUES ('San Antonio Oeste', 15)
+
+INSERT INTO Ciudades
+VALUES ('Viedma', 15)
+
+INSERT INTO Ciudades
+VALUES ('General Guemes', 16)
+
+INSERT INTO Ciudades
+VALUES ('Metan', 16)
+
+INSERT INTO Ciudades
+VALUES ('Salta', 16)
+
+INSERT INTO Ciudades
+VALUES ('San Ramon De La Nueva Oran', 16)
+
+INSERT INTO Ciudades
+VALUES ('Tartagal', 16)
+
+INSERT INTO Ciudades
+VALUES ('San Agustin Del Valle Fertil', 17)
+
+INSERT INTO Ciudades
+VALUES ('San Jose De Jachal', 17)
+
+INSERT INTO Ciudades
+VALUES ('San Juan', 17)
+
+INSERT INTO Ciudades
+VALUES ('Villa Santa Rosa', 17)
+
+INSERT INTO Ciudades
+VALUES ('Merlo', 18)
+
+INSERT INTO Ciudades
+VALUES ('San Luis', 18)
+
+INSERT INTO Ciudades
+VALUES ('Villa Mercedes', 18)
+
+INSERT INTO Ciudades
+VALUES ('Caleta Olivia', 19)
+
+INSERT INTO Ciudades
+VALUES ('Rio Gallegos', 19)
+
+INSERT INTO Ciudades
+VALUES ('Puerto Patriada', 19)
+
+INSERT INTO Ciudades
+VALUES ('Rosario', 20)
+
+INSERT INTO Ciudades
+VALUES ('Rafaela', 20)
+
+INSERT INTO Ciudades
+VALUES ('Sante Fe', 20)
+
+INSERT INTO Ciudades
+VALUES ('Obera', 21)
+
+INSERT INTO Ciudades
+VALUES ('Añatuya', 21)
+
+INSERT INTO Ciudades
+VALUES ('Fernandez', 21)
+
+INSERT INTO Ciudades
+VALUES ('Frias', 21)
+
+INSERT INTO Ciudades
+VALUES ('Santiago Del Estero', 21)
+
+INSERT INTO Ciudades
+VALUES ('Termas De Rio Hondo', 21)
+
+INSERT INTO Ciudades
+VALUES ('Tolhuin', 22)
+
+INSERT INTO Ciudades
+VALUES ('Rio Grande', 22)
+
+INSERT INTO Ciudades
+VALUES ('Ushuaia', 22)
+
+INSERT INTO Ciudades
+VALUES ('Aguilares', 23)
+
+INSERT INTO Ciudades
+VALUES ('Concepcion', 23)
+
+INSERT INTO Ciudades
+VALUES ('San Miguel De Tucuman', 23)

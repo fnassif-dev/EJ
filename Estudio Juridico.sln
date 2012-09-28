@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{BF41814B-7514-4605-B066-A8A44BF5DD9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{C6514984-1F17-441F-9B03-37B5532A4F93}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "EstudioJuridico", "EstudioJuridico\", "{7762EEE7-9981-4FE1-9DB0-898136F8DABB}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{C6514984-1F17-441F-9B03-37B5532A4F93}|DataAccessLayer.dll;{BF41814B-7514-4605-B066-A8A44BF5DD9A}|Entities.dll;{A5515C29-A388-4FFF-B287-B2616485F94A}|SQLDataAccessLayer.dll;{50172BC3-B475-4C26-A550-A296F3688854}|BusinessLayer.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/EstudioJuridico"
+		Debug.AspNetCompiler.PhysicalPath = "EstudioJuridico\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\EstudioJuridico\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/EstudioJuridico"
+		Release.AspNetCompiler.PhysicalPath = "EstudioJuridico\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\EstudioJuridico\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "2467"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLDataAccessLayer", "SQLDataAccessLayer\SQLDataAccessLayer.csproj", "{A5515C29-A388-4FFF-B287-B2616485F94A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{50172BC3-B475-4C26-A550-A296F3688854}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF41814B-7514-4605-B066-A8A44BF5DD9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF41814B-7514-4605-B066-A8A44BF5DD9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF41814B-7514-4605-B066-A8A44BF5DD9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF41814B-7514-4605-B066-A8A44BF5DD9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6514984-1F17-441F-9B03-37B5532A4F93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6514984-1F17-441F-9B03-37B5532A4F93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6514984-1F17-441F-9B03-37B5532A4F93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6514984-1F17-441F-9B03-37B5532A4F93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7762EEE7-9981-4FE1-9DB0-898136F8DABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7762EEE7-9981-4FE1-9DB0-898136F8DABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7762EEE7-9981-4FE1-9DB0-898136F8DABB}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{7762EEE7-9981-4FE1-9DB0-898136F8DABB}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{A5515C29-A388-4FFF-B287-B2616485F94A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5515C29-A388-4FFF-B287-B2616485F94A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5515C29-A388-4FFF-B287-B2616485F94A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5515C29-A388-4FFF-B287-B2616485F94A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50172BC3-B475-4C26-A550-A296F3688854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50172BC3-B475-4C26-A550-A296F3688854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50172BC3-B475-4C26-A550-A296F3688854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50172BC3-B475-4C26-A550-A296F3688854}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

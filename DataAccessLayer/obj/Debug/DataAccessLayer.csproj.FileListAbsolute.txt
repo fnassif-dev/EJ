@@ -1,0 +1,19 @@
+C:\Users\Turco\Documents\Visual Studio 2010\Projects\Estudio Juridico\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\Turco\Documents\Visual Studio 2010\Projects\Estudio Juridico\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Turco\Documents\Visual Studio 2010\Projects\Estudio Juridico\DataAccessLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Turco\Documents\Visual Studio 2010\Projects\Estudio Juridico\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\Turco\Documents\Visual Studio 2010\Projects\Estudio Juridico\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+C:\Users\Turco\Desktop\Estudio Juridico\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\Turco\Desktop\Estudio Juridico\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Turco\Desktop\Estudio Juridico\DataAccessLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Turco\Desktop\Estudio Juridico\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\Turco\Desktop\Estudio Juridico\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+C:\Users\Turco\Desktop\Estudio Juridico\DataAccessLayer\bin\Debug\Entities.dll
+C:\Users\Turco\Desktop\Estudio Juridico\DataAccessLayer\bin\Debug\Entities.pdb
+C:\Users\Desktop\Desktop\Estudio Juridico\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\Desktop\Desktop\Estudio Juridico\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Desktop\Desktop\Estudio Juridico\DataAccessLayer\bin\Debug\Entities.dll
+C:\Users\Desktop\Desktop\Estudio Juridico\DataAccessLayer\bin\Debug\Entities.pdb
+C:\Users\Desktop\Desktop\Estudio Juridico\DataAccessLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Desktop\Desktop\Estudio Juridico\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\Desktop\Desktop\Estudio Juridico\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

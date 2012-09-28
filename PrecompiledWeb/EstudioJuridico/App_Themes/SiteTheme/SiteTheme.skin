@@ -1,0 +1,91 @@
+<%--
+Plantilla de máscara predeterminada. Las siguientes máscaras se proporcionan sólo como ejemplos.
+
+1. Máscara de control con nombre. SkinId debería definirse de forma única porque
+no se permite que haya varios SkinId por tipo de control en el mismo tema.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Máscara predeterminada. Skinid no está definido Sólo se permite 
+   una máscara de control por tipo de control en el mismo tema.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+<asp:Image runat="server" SkinId="ImagenInicio" ImageUrl="~/Images/juzgado.gif" />
+
+<asp:GridView SkinID="GridViewSkin" runat="server" AutoGenerateColumns="False" 
+    CellPadding="4" ForeColor="#333333" GridLines="None">
+    <AlternatingRowStyle BackColor="White" />
+    <EditRowStyle BackColor="#2461BF" />
+    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+    <RowStyle BackColor="#EFF3FB" />
+    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+</asp:GridView>
+
+<asp:Login SkinId="LoginSkin" runat="server" Height="147px" Width="343px" BackColor="#F7F6F3" BorderColor="#E6E2D8" BorderPadding="4" 
+    BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#333333" >
+    <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
+    <LoginButtonStyle BackColor="#FFFBFF" BorderColor="#CCCCCC" BorderStyle="Solid" 
+        BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#284775" />
+    <TextBoxStyle Font-Size="0.8em" />
+    <TitleTextStyle BackColor="#5D7B9D" Font-Bold="True" Font-Size="0.9em" 
+        ForeColor="White" />
+</asp:Login>
+
+<asp:CreateUserWizard SkinId="CreateUserSkin" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" BorderStyle="Solid" BorderWidth="1px" 
+    Font-Names="Verdana" Font-Size="0.8em" Height="293px" Width="447px">
+    <ContinueButtonStyle BackColor="#FFFBFF" BorderColor="#CCCCCC" 
+        BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" 
+        ForeColor="#284775" />
+    <CreateUserButtonStyle BackColor="#FFFBFF" BorderColor="#CCCCCC" 
+        BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" 
+        ForeColor="#284775" />
+    <TitleTextStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+    <HeaderStyle BackColor="#5D7B9D" BorderStyle="Solid" Font-Bold="True" 
+        Font-Size="0.9em" ForeColor="White" HorizontalAlign="Center" />
+    <NavigationButtonStyle BackColor="#FFFBFF" BorderColor="#CCCCCC" 
+        BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" 
+        ForeColor="#284775" />
+    <SideBarButtonStyle BorderWidth="0px" Font-Names="Verdana" ForeColor="White" />
+    <SideBarStyle BackColor="#5D7B9D" BorderWidth="0px" Font-Size="0.9em" 
+        VerticalAlign="Top" />
+    <StepStyle BorderWidth="0px" />
+</asp:CreateUserWizard>
+
+<asp:PasswordRecovery SkinId="PasswordRecoverySkin" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" BorderPadding="4" 
+    BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em">
+    <SubmitButtonStyle BackColor="#FFFBFF" BorderColor="#CCCCCC" 
+        BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" 
+        ForeColor="#284775" />
+    <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
+    <SuccessTextStyle Font-Bold="True" ForeColor="#5D7B9D" />
+    <TextBoxStyle Font-Size="0.8em" />
+    <TitleTextStyle BackColor="#5D7B9D" Font-Bold="True" Font-Size="0.9em" 
+        ForeColor="White" />
+</asp:PasswordRecovery>
+
+<asp:ChangePassword SkinId="ChangePasswordSkin" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" BorderPadding="4" 
+    BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em">
+    <CancelButtonStyle BackColor="#FFFBFF" BorderColor="#CCCCCC" 
+        BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" 
+        ForeColor="#284775" />
+    <ChangePasswordButtonStyle BackColor="#FFFBFF" BorderColor="#CCCCCC" 
+        BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" 
+        ForeColor="#284775" />
+    <ContinueButtonStyle BackColor="#FFFBFF" BorderColor="#CCCCCC" 
+        BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" 
+        ForeColor="#284775" />
+    <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
+    <PasswordHintStyle Font-Italic="True" ForeColor="#888888" />
+    <TextBoxStyle Font-Size="0.8em" />
+    <TitleTextStyle BackColor="#5D7B9D" Font-Bold="True" Font-Size="0.9em" 
+        ForeColor="White" />
+</asp:ChangePassword>
